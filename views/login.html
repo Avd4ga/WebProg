@@ -1,0 +1,70 @@
+
+      <!-- login section start -->
+      <div class="contact_section layout_padding">
+         <div class="container">
+            <div class="contact_main">
+               <h1 class="request_text">Login</h1>
+               
+
+                  <form id="loginForm" action="login.php" method="post">
+
+                     <div class="form-group">
+                        <input type="email" class="email-bt" placeholder="Email" name="Email" id="inputEmail" required>
+                      </div>
+                      <div class="form-group">
+                        <input type="password" class="email-bt" placeholder="Password" name="password" id="inputPassword" required>
+                      </div>
+         
+                      <input type="submit" class="send-btn"></div>      
+                 </form>              
+               
+               
+               
+               
+            </div>
+         </div>
+      </div>
+
+      <script>
+         $(document).ready(function() {
+           $('#loginForm').submit(function(e) {
+             e.preventDefault(); // Prevent default form submission
+       
+             // Get the input values
+             var email = $('#inputEmail').val();
+             var password = $('#inputPassword').val();
+       
+             // Create an array to store input data
+             var userInput = { email: email, password: password };
+       
+             // AJAX request to check if input exists in users.json
+             $.ajax({
+               url: '../json/users.json', // Path to your users.json file
+               type: 'GET',
+               dataType: 'json',
+               success: function(usersData) {
+                 // Check if user input matches any user in users.json
+                 var userExists = usersData.some(function(user) {
+                   return user.user_email === email && user.user_password === password;
+                 });
+       
+                 if (userExists) {
+                   window.location.href = '#profile';
+                   // User exists, perform login action or redirect
+                   alert('Login successful!'); // Example alert, you can replace this with your logic
+                 } else {
+                   // User doesn't exist
+                   alert('Invalid credentials. Please try again.'); // Example alert for invalid credentials
+                 }
+               },
+               error: function(xhr, status, error) {
+                 console.error('Error fetching user data:', error);
+                 alert('Error fetching user data. Please try again.'); // Example alert for error
+               }
+             });
+           });
+         });
+       </script>
+       
+      <!-- login section end -->
+      

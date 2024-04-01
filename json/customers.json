@@ -1,0 +1,18 @@
+[
+    {
+      "image": "images/customer1.jpg",
+      "client_text": "I recently visited Cycle to purchase a new bicycle, and I couldn't be more pleased with the experience. The bike I ended up purchasing has exceeded my expectations in terms of quality and performance. It's evident that Cylce takes pride in curating a selection of top-notch bicycles from reputable brands.",
+      "client_name": "Amir Ljubijankic"
+      },
+    {
+        "image": "images/Customer2.jpg",
+        "client_text": "Overall, I highly recommend Cycle to anyone in the market for a new bike or cycling gear. Their exceptional service, coupled with high-quality products, makes them stand out in the industry. I'll definitely be returning for any future biking needs.",
+        "client_name": "Faris Selimovic" },
+    {
+        "image": "images/customer3.jpg",
+        "client_text": "Their expertise helped me find the perfect fit for my cycling style and budget. Not once did I feel pressured into making a purchase, which made the whole process much more enjoyable.",
+        "client_name": "Ahmed Kedic"}
+        
+    
+  ]
+  
