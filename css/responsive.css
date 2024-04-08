@@ -537,7 +537,7 @@ height: 110%;
 }
 .about_section{
     background-size: cover;
-    height: 1580px;
+    height: auto;
     margin-bottom: 0px;
 }
 

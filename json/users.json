@@ -1,0 +1,29 @@
+[
+    {
+      "user_id": "1111",
+      "user_email": "amir@google.com",
+      "user_firstName": "Amir",
+      "user_lastName": "Ljubijankic",
+      "user_password": "amke1234",
+      "user_wishlist": ["01", "02","04"]
+      },
+    {
+        "user_id": "2222",
+        "user_email": "ahmed@google.com",
+        "user_firstName": "Ahmed",
+        "user_lastName": "Kedic",
+        "user_password": "ahmed1234",
+        "user_wishlist": ["03"]
+    },
+    {
+        "user_id": "3333",
+        "user_email": "dino@google.com",
+        "user_firstName": "Dino",
+        "user_lastName": "Muslic",
+        "user_password": "dino1234",
+        "user_wishlist": ["04"]
+        }
+        
+    
+  ]
+  

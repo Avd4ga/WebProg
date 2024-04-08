@@ -1,0 +1,115 @@
+<!-- profile section start -->
+
+
+ 
+<div class="about_section layout_padding">
+   <div class="container">
+      <h1 class="about_taital">Profile - Your Wishlist</h1>
+      <br>
+      <br>
+      <h2 class="about_taital" id="userGreeting" style="text-align: left;">  </h2>
+      
+
+      <div class="cycle_section_2 layout_padding" id="bikeContainer">
+         <!-- Bike information will be dynamically added here -->
+         
+       </div>
+
+   </div>
+</div>
+<!-- profile section end -->
+<script>
+   $(document).ready(function() {
+     // Fetch user data from users.json using AJAX
+     $.ajax({
+       url: '../json/users.json', // Path to your users.json file
+       type: 'GET',
+       dataType: 'json',
+       success: function(data) {
+         if (data && data.length > 0) {
+           var loggedInUserId = '1111'; // Example: Assuming user with ID '1111' is logged in
+           var user = data.find(function(item) {
+             return item.user_id === loggedInUserId;
+           });
+           if (user) {
+             var firstName = user.user_firstName;
+             $('#userGreeting').text('Hi ' + firstName);
+
+             // Fetch bikes from bikes.json based on user's wishlist
+             $.ajax({
+               url: '../json/bikes.json', // Path to your bikes.json file
+               type: 'GET',
+               dataType: 'json',
+               success: function(bikesData) {
+                 if (user.user_wishlist && user.user_wishlist.length > 0) {
+                   var wishlistBikesHtml = '';
+                   user.user_wishlist.forEach(function(wishlistItemId) {
+                     var bike = bikesData.find(function(bikeItem) {
+                       return bikeItem.number_text === wishlistItemId;
+                     });
+                     if (bike) {
+                       wishlistBikesHtml += generateBikeHtml(bike);
+                     }
+                   });
+                   // Display wishlist bikes in the UI
+                   $('#bikeContainer').html(wishlistBikesHtml);
+                 }
+               },
+               error: function(xhr, status, error) {
+                 console.error('Error fetching bikes data:', error);
+               }
+             });
+           } else {
+             $('#userGreeting').text('Hi there'); // Fallback message if user not found
+           }
+         } else {
+           $('#userGreeting').text('Hi there'); // Fallback message if no user data
+         }
+       },
+       error: function(xhr, status, error) {
+         console.error('Error fetching user data:', error);
+         $('#userGreeting').text('Hi there'); // Display default message if there's an error
+       }
+     });
+
+     
+// Function to generate HTML for each bike
+// Function to generate HTML for each bike
+function generateBikeHtml(bike) {
+  return `
+    <div class="cycle_section_2 layout_padding wishlist-item"> <!-- Added 'wishlist-item' class -->
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box_main">
+            <h6 class="number_text">${bike.number_text}</h6>
+            <div class="image_containerProfile"> <!-- Container div for image -->
+              <img src="${bike.image}" alt="${bike.cycles_text}" class="bike_imageProfile"> <!-- Added 'bike_image' class to image -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h1 class="cycles_text">${bike.cycles_text}</h1>
+          <p class="lorem_text">${bike.lorem_text}</p>
+          <div class="btn_main">
+            <div class="buy_bt"><a href="#" class="remove-from-wishlist">Remove</a></div> <!-- Added remove button -->
+            <h4 class="price_text">Price <span style="color: #f7c17b">$</span> <span style="color: #325662">${bike.price_text}</span></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+$(document).on('click', '.remove-from-wishlist', function(e) {
+    e.preventDefault(); // Prevent default anchor behavior
+
+
+    // Show alert message indicating item removal
+    alert('Item has been removed from wishlist.');
+
+    return false;
+  });
+
+
+
+   });
+</script>

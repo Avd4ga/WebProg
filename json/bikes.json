@@ -1,0 +1,31 @@
+[
+    {
+      "number_text": "01",
+      "image": "images/img-2.png",
+      "cycles_text": "Outdoor Fat Tire M3",
+      "lorem_text": "Fat bikes are ideal for some applications, viable for others, and absolutely the wrong choice for certain use-cases. If I could only have three bikes, one of them would be a fatty; if I was limited to one, it would have to be something more utilitarian. But seriously – only one bike? I couldn’t do it.",
+      "price_text": "500"
+    },
+    {
+      "number_text": "02",
+      "image": "images/img-3.png",
+      "cycles_text": "Stylis Kid Cycle",
+      "lorem_text": "From colorful and vibrant designs to sturdy and durable frames, our kids' bikes are built to withstand the rigors of play while providing a smooth and enjoyable ride. With adjustable seats and handlebars, our bikes grow with your child, ensuring a perfect fit as they continue to grow and develop their cycling skills.",
+      "price_text": "150"
+    },
+    {
+      "number_text": "03",
+      "image": "images/bike6.png",
+      "cycles_text": "Modern Specializer Cycle",
+      "lorem_text": "With a goal of making sure that the Rockhopper offers both the best fit and best handling performance for every person, no matter their measurements, we’ve paired each frame size with the optimal wheel size. The result is a Rockhopper to fit every rider and the assurance that every Rockhopper is rolling on the best-handling wheel for its frame size.",
+      "price_text": "350"
+    },
+    {
+      "number_text": "04",
+      "image": "images/img-5.png",
+      "cycles_text": "Modern Cycle",
+      "lorem_text": "With adjustable seats and handlebars, our bikes grow with your child, ensuring a perfect fit as they continue to grow and develop their cycling skills., the Rockhopper offers both the best fit and best handling performance for every person, no matter their measurements, we’ve paired each frame size with the optimal wheel size. The result is a Rockhopper to fit every rider and the assurance that every Rockhopper is rolling on the best-handling wheel for its frame size.",
+      "price_text": "450"
+    }
+  ]
+  

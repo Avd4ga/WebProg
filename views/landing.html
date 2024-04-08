@@ -1,0 +1,83 @@
+<div class="about_section layout_padding" style="background-repeat: no-repeat; height: auto;">
+   <div class="container">
+      <h1 class="about_taital">Welcome to Cycle - Your Ultimate Destination for Biking Bliss!</h1>
+      <p class="about_text">At Cycle, we're not just passionate about bikes; we're obsessed. Our mission is simple: to share our love for cycling with fellow enthusiasts and newcomers alike, providing unparalleled service and expertise every step of the way. 
+      </p>
+      
+      <p class="about_text">With a commitment to quality and innovation, we've curated a handpicked selection of the finest bikes and accessories from top brands in the industry. From sleek road bikes built for speed to rugged mountain bikes engineered to conquer any terrain, we've got something to suit every rider's style and skill level.
+      </p>
+
+      <div class="about_main">
+         <img src="images/img-5.png" class="image_5">
+      </div>
+      <div class="read_bt_1"><a href="#about">Read More</a></div>
+   </div>
+</div>
+<!-- about section end -->
+<!-- client section start -->
+
+
+
+<div class="client_section layout_padding">
+   <div id="my_slider" class="carousel slide" data-ride="carousel">
+     <div class="carousel-inner">
+       <!-- Carousel items will be dynamically added here -->
+     </div>
+     <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+       <i class="fa fa-angle-left"></i>
+     </a>
+     <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+       <i class="fa fa-angle-right"></i>
+     </a>
+   </div>
+ </div>
+
+
+ <script>
+   $(document).ready(function() {
+     // Fetch data from customers.json using AJAX
+     $.ajax({
+       url: '../json/customers.json', // Path to your customers.json file
+       type: 'GET',
+       dataType: 'json',
+       success: function(data) {
+         // Process the data and update carousel items
+         updateCarousel(data);
+       },
+       error: function(xhr, status, error) {
+         console.error('Error fetching customer data:', error);
+       }
+     });
+
+     // Function to update carousel items with customer data
+     function updateCarousel(customers) {
+       var carouselInner = $('#my_slider .carousel-inner');
+       carouselInner.empty(); // Clear existing carousel items
+
+       // Loop through each customer and create carousel item
+       customers.forEach(function(customer, index) {
+         var activeClass = index === 0 ? 'active' : ''; // Set active class for the first item
+         var itemHtml = `
+           <div class="carousel-item ${activeClass}">
+             <div class="container">
+               <div class="client_main">
+                 <h1 class="client_taital">Our Customers</h1>
+                 <div class="client_section_2">
+                   <div class="client_left">
+                     <div><img src="${customer.image}" class="client_img"></div>
+                   </div>
+                   <div class="client_right">
+                     <div class="quote_icon"><img src="images/quote-icon.png"></div>
+                     <p class="client_text">${customer.client_text}</p>
+                     <h3 class="client_name">${customer.client_name}</h3>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         `;
+         carouselInner.append(itemHtml); // Append the item to the carousel
+       });
+     }
+   });
+ </script>

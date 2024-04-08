@@ -1,0 +1,56 @@
+<body>
+   <div class="news_section layout_padding">
+     <div class="container">
+      <h1 class="news_taital">Cycle News Hub</h1>
+         <p class="news_text">Your Premier Destination for All Things Cycling. From the freshest news on bike innovations to seasoned insights on gear and routes, we're your ultimate go-to for everything bicycle-related. Stay ahead of the curve, get inspired, and connect with fellow enthusiasts at Cycle Hub. Stay up-to-date with the latest trends and innovations in the cycling world through our daily news updates and in-depth reviews of the hottest gear on the market. Need inspiration for your next adventure? Explore our curated selection of routes and trails, complete with insider tips and stunning photos to ignite your wanderlust.  </p>
+         
+       <div class="news_section_2 layout_padding">
+         <div class="row" id="newsContainer">
+           <!-- News items will be dynamically added here -->
+         </div>
+       </div>
+     </div>
+   </div>
+ 
+   <script>
+     $(document).ready(function() {
+       // Fetch data from news.json using AJAX
+       $.ajax({
+         url: '../json/news.json', // Path to your news.json file
+         type: 'GET',
+         dataType: 'json',
+         success: function(data) {
+           // Handle successful response
+           displayNews(data);
+         },
+         error: function(xhr, status, error) {
+           // Handle error
+           console.error('Error fetching news:', error);
+         }
+       });
+ 
+       function displayNews(newsData) {
+         var newsContainer = $('#newsContainer');
+ 
+         // Loop through each news item and create HTML structure
+         newsData.forEach(function(newsItem) {
+           var html = `
+             <div class="col-sm-4">
+               <div class="box_main_1">
+                 <div class="zoomout frame"><img src="${newsItem.image}"></div>
+                 <div class="padding_15">
+                   <h2 class="speed_text">${newsItem.speed_text}</h2>
+                   <div class="post_text">Post by: ${newsItem.post_by} <span style="float: right;">${newsItem.post_date}</span></div>
+                   <p class="long_text">${newsItem.long_text}</p>
+                 </div>
+               </div>
+             </div>
+           `;
+ 
+           // Append the HTML to the news container
+           newsContainer.append(html);
+         });
+       }
+     });
+   </script>
+ </body>

@@ -3,10 +3,10 @@
 @import url(animate.min.css);
 @import url(normalize.css);
 @import url(icomoon.css);
-@import url(css/font-awesome.min.css);
+
 @import url(meanmenu.css);
 @import url(owl.carousel.min.css);
-@import url(swiper.min.css);
+
 @import url(slick.css);
 @import url(jquery.fancybox.min.css);
 @import url(jquery-ui.css);
@@ -475,6 +475,7 @@ button {
 .cycle_section_2{
     width: 100%;
     float: left;
+    padding-bottom: 50px;
 }
 .box_main{
     width: 100%;
@@ -524,17 +525,7 @@ clip-path: polygon(0 0, 75% 8%, 75% 80%, 0% 100%);
     text-align: right;
     padding-top: 40px;
 }
-.cycles_text:after {
-    content: '';
-    position: absolute;
-    width: 180px;
-    height: 1px;
-    background-color: #325662;
-    left: 0px;
-    right: initial;
-    margin: 0 auto;
-    top: 70px;
-}
+
 .lorem_text{
     width: 100%;
     float: left;
@@ -1150,5 +1141,26 @@ textarea#comment::placeholder {
 #navbarSupportedContent.nav-normal{
     transform: none;
 }
+.wishlist-item {
+    background-color: #fff; 
+    padding: 20px; 
+    margin-bottom: 20px; 
+    border-radius: 20px; 
+    margin-right: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+
+  .bike_imageProfile {
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+  }
+
+  .image_containerProfile {
+    max-width: 200px; 
+    margin: 0 auto; 
+  }
+
 
 /* contact section end*/
