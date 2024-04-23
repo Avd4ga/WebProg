@@ -37,7 +37,7 @@
    $(document).ready(function() {
      // Fetch data from customers.json using AJAX
      $.ajax({
-       url: '../json/customers.json', // Path to your customers.json file
+       url: './liveBackend/rest/get_customers.php', // Path to your customers.json file
        type: 'GET',
        dataType: 'json',
        success: function(data) {

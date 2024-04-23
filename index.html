@@ -226,7 +226,7 @@
                 </div>
                 <div class="call_text" style="font-size: 27px;color: #f7c17b;"><strong>Newsletter</strong></div>
 
-                <form id="newsletterForm" action="newsletter.php" method="post">
+                <form id="newsletterForm" action="./liveBackend/rest/add_newsletter.php" method="post">
 
                     <div class="form-group">
                         <input type="email" class="email_text" id="email_text" placeholder="Enter Your Email"
@@ -237,6 +237,7 @@
                     <input type="submit" class="subscribe_bt" id="check_btn" style="width: 200px;">
 
                 </form>
+                
             </div>
         </div>
     </div>
@@ -248,85 +249,84 @@
         <p class="copyright_text">Copyright 2019 All Right Reserved By.<a href="https://www.ibu.edu.ba"> Avdo
                 Vladavic</p>
         <p class="copyright_text">Distributed By. <a href="https://www.ibu.edu.ba"> IBU </a></p>
+        </div>
     </div>
-</div>
-<!-- copyright section end -->
-<!-- Javascript files-->
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/plugin.js"></script>
-<!-- sidebar -->
-<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="js/custom.js"></script>
-<!-- javascript -->
+    <!-- copyright section end -->
+    <!-- Javascript files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <!-- sidebar -->
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- javascript -->
 
 
 
-<!-- SPAPP-->
-<script src="js/jquery.spapp.min.js"></script>
+    <!-- SPAPP-->
+    <script src="js/jquery.spapp.min.js"></script>
 
 
-<script>
-    function openNav() {
-        
-        document.getElementById("main").style.marginLeft = "250px";
-    }
+    <script>
+        function openNav() {
+            
+            document.getElementById("main").style.marginLeft = "250px";
+        }
 
-    function closeNav() {
-        
-        document.getElementById("main").style.marginLeft = "0";
+        function closeNav() {
+            
+            document.getElementById("main").style.marginLeft = "0";
 
-    }
+        }
 
-    $("#main").click(function () {
-        $("#navbarSupportedContent").toggleClass("nav-normal")
-    })
-</script>
+        $("#main").click(function () {
+            $("#navbarSupportedContent").toggleClass("nav-normal")
+        })
+    </script>
 
-<!-- SPAPP-->
+    <!-- SPAPP-->
 
-<script>
+    <script>
 
-    var app = $.spapp({
-        defaultView: "#landing",
-        templateDir: "./views/"
+        var app = $.spapp({
+            defaultView: "#landing",
+            templateDir: "./views/"
 
-    });
-    app.run();
+        });
+        app.run();
 
 
-</script>
-<script>
-    $(document).ready(function () {
-        $('#newsletterForm').submit(function (e) {
-            e.preventDefault()
-            var email = $('#email_text').val();
-
-            // AJAX request to check if email exists in newsletter.json
-            $.ajax({
-                url: '../json/newsletter.json', // Path to your newsletter.json file
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    var emailExists = data.some(function (entry) {
-                        return entry.user_email === email;
-                    });
-                    if (emailExists) {
-                        alert('Email is already subscribed.');
-                    } else {
-                        alert('Email is added.');
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#newsletterForm').submit(function (e) {
+                // Prevent the default form submission behavior
+                e.preventDefault();
+    
+                // Get the value of the email input field
+                var email = $('#email_text').val();
+    
+                // Send an AJAX request to the PHP script
+                $.ajax({
+                    url: './liveBackend/rest/add_newsletter.php',
+                    type: 'POST',
+                    data: { enterMail: email }, // Use the correct parameter name as expected by the PHP script
+                    dataType: 'json',
+                    success: function (data) {
+                        // Handle the success response
+                        console.log(data);
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle the error response
+                        console.error('Error sending email:', error);
                     }
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error fetching newsletter data:', error);
-                    $('#result_msg').text('Error fetching data. Please try again.');
-                }
+                });
             });
         });
-    });
-</script>
+    </script>
+    
 
 
-</body>
-</html>
+    
+    </html>

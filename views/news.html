@@ -16,7 +16,7 @@
      $(document).ready(function() {
        // Fetch data from news.json using AJAX
        $.ajax({
-         url: '../json/news.json', // Path to your news.json file
+         url: './liveBackend/rest/get_news.php', // Path to your news.json file
          type: 'GET',
          dataType: 'json',
          success: function(data) {

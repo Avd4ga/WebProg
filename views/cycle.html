@@ -19,10 +19,9 @@
     $(document).ready(function() {
       var bikesData; // Variable to store bikes data
       var lastIndexDisplayed = 0; // Index of the last displayed bike
-
       // Fetch data from bikes.json using AJAX
       $.ajax({
-        url: '../json/bikes.json', // Path to your bikes.json file
+        url: './liveBackend/rest/get_bikes.php', // Path to your get_bikes.php file
         type: 'GET',
         dataType: 'json',
         success: function(data) {

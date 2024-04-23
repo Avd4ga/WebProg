@@ -22,7 +22,7 @@
    $(document).ready(function() {
      // Fetch user data from users.json using AJAX
      $.ajax({
-       url: '../json/users.json', // Path to your users.json file
+       url: './json/users.json', // Path to your users.json file
        type: 'GET',
        dataType: 'json',
        success: function(data) {
@@ -37,7 +37,7 @@
 
              // Fetch bikes from bikes.json based on user's wishlist
              $.ajax({
-               url: '../json/bikes.json', // Path to your bikes.json file
+               url: './json/bikes.json', // Path to your bikes.json file
                type: 'GET',
                dataType: 'json',
                success: function(bikesData) {
