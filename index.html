@@ -243,6 +243,7 @@
     </div>
 </div>
 <!-- footer section end -->
+
 <!-- copyright section start -->
 <div class="copyright_section">
     <div class="container">
@@ -252,6 +253,7 @@
         </div>
     </div>
     <!-- copyright section end -->
+
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -301,7 +303,7 @@
     <script>
         $(document).ready(function () {
             $('#newsletterForm').submit(function (e) {
-                // Prevent the default form submission behavior
+               
                 e.preventDefault();
     
                 // Get the value of the email input field
@@ -311,14 +313,14 @@
                 $.ajax({
                     url: './liveBackend/rest/add_newsletter.php',
                     type: 'POST',
-                    data: { enterMail: email }, // Use the correct parameter name as expected by the PHP script
+                    data: { enterMail: email }, 
                     dataType: 'json',
                     success: function (data) {
-                        // Handle the success response
+                        
                         console.log(data);
                     },
                     error: function (xhr, status, error) {
-                        // Handle the error response
+                        
                         console.error('Error sending email:', error);
                     }
                 });

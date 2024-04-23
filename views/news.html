@@ -16,15 +16,15 @@
      $(document).ready(function() {
        // Fetch data from news.json using AJAX
        $.ajax({
-         url: './liveBackend/rest/get_news.php', // Path to your news.json file
+         url: './liveBackend/rest/get_news.php', 
          type: 'GET',
          dataType: 'json',
          success: function(data) {
-           // Handle successful response
+           
            displayNews(data);
          },
          error: function(xhr, status, error) {
-           // Handle error
+           
            console.error('Error fetching news:', error);
          }
        });

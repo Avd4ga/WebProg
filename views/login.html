@@ -30,7 +30,7 @@
            $('#loginForm').submit(function(e) {
              e.preventDefault(); // Prevent default form submission
        
-             // Get the input values
+             
              var email = $('#inputEmail').val();
              var password = $('#inputPassword').val();
        
@@ -39,7 +39,7 @@
        
              // AJAX request to check if input exists in users.json
              $.ajax({
-               url: '../json/users.json', // Path to your users.json file
+               url: '../json/users.json', 
                type: 'GET',
                dataType: 'json',
                success: function(usersData) {
@@ -51,15 +51,15 @@
                  if (userExists) {
                    window.location.href = '#profile';
                    // User exists, perform login action or redirect
-                   alert('Login successful!'); // Example alert, you can replace this with your logic
+                   alert('Login successful!'); 
                  } else {
                    // User doesn't exist
-                   alert('Invalid credentials. Please try again.'); // Example alert for invalid credentials
+                   alert('Invalid credentials. Please try again.'); 
                  }
                },
                error: function(xhr, status, error) {
                  console.error('Error fetching user data:', error);
-                 alert('Error fetching user data. Please try again.'); // Example alert for error
+                 alert('Error fetching user data. Please try again.'); 
                }
              });
            });

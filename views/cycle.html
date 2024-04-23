@@ -17,25 +17,25 @@
 
   <script>
     $(document).ready(function() {
-      var bikesData; // Variable to store bikes data
-      var lastIndexDisplayed = 0; // Index of the last displayed bike
+      var bikesData; 
+      var lastIndexDisplayed = 0; 
       // Fetch data from bikes.json using AJAX
       $.ajax({
-        url: './liveBackend/rest/get_bikes.php', // Path to your get_bikes.php file
+        url: './liveBackend/rest/get_bikes.php', 
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-          // Store the data in the bikesData variable
+          
           bikesData = data;
-          displayBikes(); // Display initial bikes
+          displayBikes();
         },
         error: function(xhr, status, error) {
-          // Handle error
+          
           console.error('Error fetching bikes:', error);
         }
       });
 
-      // Function to display bikes
+      
       function displayBikes() {
         var bikeContainer = $('#bikeContainer');
 
@@ -62,25 +62,25 @@
               </div>
             </div>
           `;
-          // Append the HTML to the bike container
+          
           bikeContainer.append(html);
         }
 
-        // Update the last index displayed
+        
         lastIndexDisplayed += 2;
 
-        // Show the Read More button if there are more bikes
+        
         if (lastIndexDisplayed < bikesData.length) {
           $('#readBtnDiv').show();
         } else {
-          $('#readBtnDiv').hide(); // Hide the button if no more bikes
+          $('#readBtnDiv').hide(); 
         }
       }
 
-      // Read More button click event
+      
       $('#read_bt').click(function(e) {
-        e.preventDefault(); // Prevent default link behavior
-        displayBikes(); // Display next set of bikes
+        e.preventDefault(); 
+        displayBikes(); 
       });
 
       $(document).on('click', '.buy_bt', function(e) {

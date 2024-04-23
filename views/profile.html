@@ -17,12 +17,14 @@
 
    </div>
 </div>
+
 <!-- profile section end -->
+
 <script>
    $(document).ready(function() {
      // Fetch user data from users.json using AJAX
      $.ajax({
-       url: './json/users.json', // Path to your users.json file
+       url: './json/users.json', 
        type: 'GET',
        dataType: 'json',
        success: function(data) {
@@ -37,7 +39,7 @@
 
              // Fetch bikes from bikes.json based on user's wishlist
              $.ajax({
-               url: './json/bikes.json', // Path to your bikes.json file
+               url: './json/bikes.json', 
                type: 'GET',
                dataType: 'json',
                success: function(bikesData) {
@@ -51,7 +53,7 @@
                        wishlistBikesHtml += generateBikeHtml(bike);
                      }
                    });
-                   // Display wishlist bikes in the UI
+                   
                    $('#bikeContainer').html(wishlistBikesHtml);
                  }
                },
@@ -60,20 +62,19 @@
                }
              });
            } else {
-             $('#userGreeting').text('Hi there'); // Fallback message if user not found
+             $('#userGreeting').text('Hi there'); 
            }
          } else {
-           $('#userGreeting').text('Hi there'); // Fallback message if no user data
+           $('#userGreeting').text('Hi there');
          }
        },
        error: function(xhr, status, error) {
          console.error('Error fetching user data:', error);
-         $('#userGreeting').text('Hi there'); // Display default message if there's an error
+         $('#userGreeting').text('Hi there'); 
        }
      });
 
      
-// Function to generate HTML for each bike
 // Function to generate HTML for each bike
 function generateBikeHtml(bike) {
   return `
@@ -100,10 +101,8 @@ function generateBikeHtml(bike) {
   `;
 }
 $(document).on('click', '.remove-from-wishlist', function(e) {
-    e.preventDefault(); // Prevent default anchor behavior
+    e.preventDefault();
 
-
-    // Show alert message indicating item removal
     alert('Item has been removed from wishlist.');
 
     return false;

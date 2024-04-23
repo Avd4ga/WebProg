@@ -21,25 +21,24 @@ class NewsletterDao extends BaseDao {
                 return false;
             }
 
-            // Prepare an SQL statement to insert the email
+           
             $stmt = $this->connection->prepare("INSERT INTO newsletter (email) VALUES (:email)");
 
-            // Bind the email data to the SQL statement
+            
             $stmt->bindParam(':email', $email);
 
-            // Execute the SQL statement
             $stmt->execute();
 
-            // Check if the insertion was successful
+           
             if ($stmt->rowCount() > 0) {
-                return true; // Return true if insertion was successful
+                return true;
             } else {
-                return false; // Return false if insertion failed
+                return false; 
             }
         } catch (PDOException $e) {
-            // Handle PDO exceptions
+            
             echo "Error: " . $e->getMessage();
-            return false; // Return false in case of an exception
+            return false; 
         }
     }
 }

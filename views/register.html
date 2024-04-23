@@ -21,7 +21,7 @@
  
          <div class="form-group">
            <input type="password" class="email-bt" placeholder="Confirm Password" id="confirmPassword" name="confirmPassword" required>
-           <span id="passwordError" style="color: red;"></span> <!-- Span for error message -->
+           <span id="passwordError" style="color: red;"></span> 
          </div>
  
          <input type="submit" class="send_btn">
@@ -38,10 +38,10 @@
  
      if (password !== confirmPassword) {
        document.getElementById('passwordError').textContent = 'Passwords do not match';
-       event.preventDefault(); // Prevent form submission
+       event.preventDefault(); 
      } else {
-       document.getElementById('passwordError').textContent = ''; // Clear error message
-       alert('Successful registration!'); // Alert for successful registration
+       document.getElementById('passwordError').textContent = ''; 
+       alert('Successful registration!'); 
      }
    });
  </script>
