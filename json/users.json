@@ -17,12 +17,28 @@
     },
     {
         "user_id": "3333",
-        "user_email": "dino@google.com",
-        "user_firstName": "Dino",
+        "user_email": "hena@google.com",
+        "user_firstName": "Hena",
         "user_lastName": "Muslic",
-        "user_password": "dino1234",
+        "user_password": "hena1234",
         "user_wishlist": ["04"]
-        }
+        },
+    {
+        "user_id": "4444",
+        "user_email": "hamza@google.com",
+        "user_firstName": "Hamza",
+        "user_lastName": "Muslic",
+        "user_password": "hamza1234",
+        "user_wishlist": ["04"]
+    },
+    {
+        "user_id": "5555",
+        "user_email": "faruk@google.com",
+        "user_firstName": "Faruk",
+        "user_lastName": "Rulic",
+        "user_password": "faruk1234",
+        "user_wishlist": ["04"]
+    }
         
     
   ]
