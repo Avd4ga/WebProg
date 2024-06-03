@@ -31,11 +31,11 @@ class Config {
     }
 }
 // Database access credentials
-define('DB_NAME', 'cycle');
-define('DB_PORT', 3306);
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_HOST', '127.0.0.1');
+//define('DB_NAME', 'cycle');
+//define('DB_PORT', 3306);
+//define('DB_USER', 'root');
+//define('DB_PASS', '');
+//define('DB_HOST', '127.0.0.1');
 
 //JWT secret key
-define("JWT_SECRET", "UJbVLmBhzQDfKv7wqSKaj8NE3FEnaN");
+//define("JWT_SECRET", "UJbVLmBhzQDfKv7wqSKaj8NE3FEnaN");
