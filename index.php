@@ -1,3 +1,3 @@
 <?php
-phpinfo();
-// xdebug_info();
+header('Location: index.html');
+exit;
