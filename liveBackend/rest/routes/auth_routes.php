@@ -11,7 +11,7 @@ Flight::before('start', function(&$params, &$output){
     // This is your middleware function
     // In this example, it checks if the request method is POST
     // If it's not, it halts the execution with a 405 status code (Method Not Allowed)
-    if (Flight::request()->method !== 'POST') {
+    if (Flight::request()->method !== 'POST' && Flight::request()->method !== 'GET') {
         Flight::halt(405, 'Method Not Allowed');
     }
 });
