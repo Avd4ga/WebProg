@@ -1,5 +1,7 @@
 <?php
 
+
+
 require_once('./services/NewsletterService.php');
 
 header('Content-Type: application/json');

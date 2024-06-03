@@ -1,15 +1,27 @@
 <?php
-require_once('./dao/CustomersDao.php');
 
-class CustomersRoutes {
-    private $customersDao;
+/**
+ * @OA\Get(
+ *      path="/customers", 
+ *      tags={"Customers"},
+ *      summary="Get customers details",
+ *      @OA\Response(
+ *          response="200", 
+ *          description="Customers details if user exists"
+ *      ),
+ *     @OA\Response(
+ *         response="500",
+ *         description="Customers not logged in"
+ *    )
+ * )
+ */
 
-    public function __construct() {
-        $this->customersDao = new CustomersDao();
-    }
 
-    public function handleGetCustomers() {
-        return $this->customersDao->getAllCustomers();
-    }
-}
+require_once __DIR__ . "/../dao/CustomersDao.php";
+
+Flight::route('GET /customers', function() {
+    $customersDao = new CustomersDao();
+    $customersData = $customersDao->getAllCustomers();
+    Flight::json($customersData);
+});
 ?>

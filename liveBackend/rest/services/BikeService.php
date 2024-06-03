@@ -1,15 +1,14 @@
 <?php
-require_once('./routes/BikeRoutes.php');
+require_once('./dao/BikeDao.php');
 
 class BikeService {
-    private $bikeRoutes;
+    private $bikeDao;
 
     public function __construct() {
-        $this->bikeRoutes = new BikeRoutes();
+        $this->bikeDao = new BikeDao();
     }
 
     public function getAllBikes() {
-        return $this->bikeRoutes->handleGetBikes();
+        return $this->bikeDao->getAllBikes();
     }
 }
-?>

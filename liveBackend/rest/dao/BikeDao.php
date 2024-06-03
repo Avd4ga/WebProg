@@ -1,13 +1,13 @@
 <?php
-require_once('./config.php');
-require_once('BaseDao.php');
 
 
-class BikeDao extends BaseDao{
+require_once __DIR__ . "/../config.php";
+
+class BikeDao{
     private $pdo;
 
     public function __construct() {
-        $this->pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';port='.DB_PORT, DB_USER, DB_PASS);
+        $this->pdo = new PDO('mysql:host='.Config::DB_HOST().';dbname='.Config::DB_NAME().';port='.Config::DB_PORT(), Config::DB_USER(), Config::DB_PASS());
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
