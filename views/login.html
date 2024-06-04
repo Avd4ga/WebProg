@@ -1,140 +1,100 @@
-
-      <!-- login section start -->
-      <div class="contact_section layout_padding">
-         <div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script> <!-- For notifications -->
+</head>
+<body>
+    <!-- login section start -->
+    <div class="contact_section layout_padding">
+        <div class="container">
             <div class="contact_main">
-               <h1 class="request_text">Login</h1>
-               
-
-                  <form id="loginForm" action="login.php" method="post">
-
-                     <div class="form-group">
-                        <input type="email" class="email-bt" placeholder="Email" name="Email" id="inputEmail" required>
-                      </div>
-                      <div class="form-group">
-                        <input type="password" class="email-bt" placeholder="Password" name="password" id="inputPassword" required>
-                      </div>
-         
-                      <input type="submit" class="send-btn"></div>      
-                 </form>              
-               
-               
-               
-               
+                <h1 class="request_text">Login</h1>
+                <form id="login-form">
+                    <div class="form-group">
+                        <input type="email" class="email-bt" placeholder="Email" name="email" id="inputEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="email-bt" placeholder="Password" name="pwd" id="inputPassword" required>
+                    </div>
+                    <input type="submit" class="send-btn">
+                </form>
             </div>
-         </div>
-      </div>
-     
-<script>
+        </div>
+    </div>
+    <!-- login section end -->
 
-let logins = [];
+    <script>
+        let logins = [];
 
-if(Utils.get_from_localstorage("users")) {
-    window.location = "../WebProg";
-}
+        // Redirect if user is already logged in
+        if (localStorage.getItem("users")) {
+            window.location.href = "profile.html"; // Adjust the path as needed
+        }
 
-$("#loginForm").validate({
-  rules: {
-        "Email": {
-            required: true,
-            email: true
-        },
-        "password": {
-            required: true
-        },
-    },
-    messages: {
-        "Email": {
-            required: "Please enter your email",
-        },
-        "password": {
-            required: "Please enter your password",
-        },
-    },
-    submitHandler: function(form, event) {
-        event.preventDefault(); // da mi ne submita
+        // Serialize form data to JSON
+        const serializeForm = (form) => {
+            let jsonResult = {};
+            $.each($(form).serializeArray(), function() {
+                jsonResult[this.name] = this.value;
+            });
+            return jsonResult;
+        }
 
-        Utils.block_ui("body");
-        let login = serializeForm(form);
-        console.log(JSON.stringify(login));
-
-        RestClient.post(
-            "auth/login",
-            login,
-            function(response) {
-                $("#loginForm")[0].reset();
-                Utils.unblock_ui("body");
-                Utils.set_to_localstorage("user", response);
-                // Utils.set_to_localstorage("user", JSON.parse(response));
-                console.log("Response is ", response);
-
-                window.location = "../WebProg";
+        // Handle form submission
+        $("#login-form").validate({
+            rules: {
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true
+                }
             },
-            function(error) {
-                Utils.unblock_ui("body");
-                toastr.error(error.responseText);
+            messages: {
+                email: {
+                    required: "Please enter your email",
+                    email: "Please enter a correct email"
+                },
+                password: {
+                    required: "Please enter a password"
+                }
+            },
+            submitHandler: function(form, event) {
+                event.preventDefault(); // Prevent default form submission
+
+                let loginData = serializeForm(form);
+                console.log(JSON.stringify(loginData));
+
+                // AJAX POST request to authenticate user
+                $.ajax({
+                    url: 'auth/login',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(loginData),
+                    success: function(response) {
+                        $("#login-form")[0].reset();
+
+                        // Store the JWT in local storage
+                        localStorage.setItem("users", response.token);
+                        console.log("Login successful");
+
+                        // Redirect to profile page
+                        window.location.href = "profile.html"; // Ensure profile.html is in the same directory
+                    },
+                    error: function(xhr) {
+                        // Display error message
+                        toastr.error(xhr.responseText);
+                        console.log("Login failed: " + xhr.responseText);
+                    }
+                });
             }
-        );
-
-    }
-});
-
-serializeForm = (form) => {
-    let jsonResult = {};
-    //console.log($(form).serializeArray());
-    //serializeArray() reutrns an array of: name: [name of filed], value: [value of filed] for each field in the form
-    $.each($(form).serializeArray(), function() {
-        jsonResult[this.name] = this.value;
-    });
-    return jsonResult;
-}
-
-
-</script>
-<!--
-
-<script>
-         $(document).ready(function() {
-           $('#loginForm').submit(function(e) {
-             e.preventDefault(); // Prevent default form submission
-       
-             
-             var email = $('#inputEmail').val();
-             var password = $('#inputPassword').val();
-       
-             // Create an array to store input data
-             var userInput = { email: email, password: password };
-       
-             // AJAX request to check if input exists in users.json
-             $.ajax({
-               url: '../json/users.json', 
-               type: 'GET',
-               dataType: 'json',
-               success: function(usersData) {
-                 // Check if user input matches any user in users.json
-                 var userExists = usersData.some(function(user) {
-                   return user.user_email === email && user.user_password === password;
-                 });
-       
-                 if (userExists) {
-                   window.location.href = '#profile';
-                   // User exists, perform login action or redirect
-                   alert('Login successful!'); 
-                 } else {
-                   // User doesn't exist
-                   alert('Invalid credentials. Please try again.'); 
-                 }
-               },
-               error: function(xhr, status, error) {
-                 console.error('Error fetching user data:', error);
-                 alert('Error fetching user data. Please try again.'); 
-               }
-             });
-           });
-         });
-       </script>
-
--->      
-       
-      <!-- login section end -->
-      
+        });
+    </script>
+</body>
+</html>

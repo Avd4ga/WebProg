@@ -1,15 +1,14 @@
 <?php
-require_once('./routes/NewsRoutes.php');
+require_once('./dao/NewsDao.php');
 
 class NewsService {
-    private $newsRoutes;
+    private $newsDao;
 
     public function __construct() {
-        $this->newsRoutes = new NewsRoutes();
+        $this->newsDao = new NewsDao();
     }
 
     public function getAllNews() {
-        return $this->newsRoutes->handleGetNews();
+        return $this->newsDao->getAllNews();
     }
 }
-?>

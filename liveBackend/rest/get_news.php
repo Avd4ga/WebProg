@@ -1,4 +1,7 @@
 <?php
+
+
+
 require_once('./services/NewsService.php');
 
 $newsService = new NewsService();

@@ -1,15 +1,14 @@
 <?php
-require_once('./routes/CustomersRoutes.php');
+require_once('./dao/CustomersDao.php');
 
 class CustomersService {
-    private $customersRoutes;
+    private $customersDao;
 
     public function __construct() {
-        $this->customersRoutes = new CustomersRoutes();
+        $this->customersDao = new CustomersDao();
     }
 
     public function getAllCustomers() {
-        return $this->customersRoutes->handleGetCustomers();
+        return $this->customersDao->getAllCustomers();
     }
 }
-?>
